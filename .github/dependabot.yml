@@ -1,0 +1,22 @@
+version: 2
+registries:
+  nuget-feed-f-feedz-io-wildgums-wildgums-nuget-index-json:
+    type: nuget-feed
+    url: https://f.feedz.io/wildgums/wildgums/nuget/index.json
+    username: "${{secrets.NUGET_FEED_F_FEEDZ_IO_WILDGUMS_WILDGUMS_NUGET_INDEX_JSON_USERNAME}}"
+    password: "${{secrets.NUGET_FEED_F_FEEDZ_IO_WILDGUMS_WILDGUMS_NUGET_INDEX_JSON_PASSWORD}}"
+
+updates:
+- package-ecosystem: nuget
+  directory: "/"
+  schedule:
+    interval: daily
+    time: "02:00"
+    timezone: Europe/Amsterdam
+  open-pull-requests-limit: 10
+  ignore:
+  - dependency-name: "*Analyzers"
+    versions:
+    - ">= 0"
+  registries:
+  - nuget-feed-f-feedz-io-wildgums-wildgums-nuget-index-json
